@@ -19,3 +19,27 @@ prompt = PromptTemplate (
 	)
 
 llm_chain = LLMChain(llm=llm, prompt=prompt)
+
+llm_chain.run("What is lablab.ai")
+
+search = DuckDuckGoSearchRun()
+# Web Search Tool
+search_tool = Tool (
+	name = "Web Search",
+	func = search.run,
+	description = 'A useful tool for searching the Internet to find information on world events, issues etc. Worth using for general topics. Use precise questions.'
+	)
+
+class WA:
+	"""
+	Wolfram | Alpha API
+	"""
+	def __init__(self, app_id):
+		self.url = f"http://api.wolframalpha.com/VI/result?appid={app_id}&i="
+
+	def run(self, query):
+		query = query.replace("+","plus").replace("-","minus")
+		result = requests.post(f"{self.url}{query}")
+		if not result.ok:
+			raise Exception ("Cannot call WA API.")
+		return result.text
