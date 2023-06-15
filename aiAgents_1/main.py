@@ -6,7 +6,7 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain.tools import DuckDuckGoSearchRun
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "..."
 
 llm = OpenAI (
 	openai_api_key = OPENAI_API_KEY,
